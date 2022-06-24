@@ -21,7 +21,7 @@ jobs:
   print-world:
     docker:
       - image: circleci/node:13.8.0
-    step:
+    steps:
       - run:
           name: "Say World"
           command: "echo world!"
