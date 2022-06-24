@@ -29,10 +29,10 @@ jobs:
 
   print-my-name:
     docker:
-      - image: circleci/python:3.10
+      - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: print "Hi"
+      - run: echo $MY_NAME
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
