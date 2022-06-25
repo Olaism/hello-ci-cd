@@ -58,6 +58,23 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
+  fail-job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: return 1
+      - run:
+          name: on error
+          command: echo "Hello, Error"
+          when: on_fail
+  find-my-error:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - command: echo "Argh!"
+      - when: on_fail
 workflows:
   say-hello-workflow:
     jobs:
@@ -71,3 +88,4 @@ workflows:
           requires:
             - save_hello_world_output
       - run-pipeline-id
+      - fail-job
